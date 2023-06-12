@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Entretien Demo</title>
+  </head>
+  <body>
+    <div id="root" dir="auto"></div>
+
+    <script type="text/babel">
+      async function List({ field }) {
+        const res = await fetch("http://127.0.0.1:5000/data");
+        const data = await res.json();
+
+        console.log(data);
+
+        return (
+          <div>
+            {data.map((o) => (
+              <div>{o[field]}</div>
+            ))}
+          </div>
+        );
+      }
+
+      function App() {
+        return (
+          <div>
+            <List type={"nom"} />
+          </div>
+        );
+      }
+
+      ReactDOM.render(<App />, document.getElementById("root"));
+    </script>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/dataformsjs@4.0.1/js/react/jsxLoader.min.js"></script>
+  </body>
+</html>
